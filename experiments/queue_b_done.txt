@@ -1,0 +1,14 @@
+-m wremind.stat_baselines --region D4 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.train --region D4 --model gwnet_gauss --seed 0 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.train --region D4 --model gwnet_gauss+wx --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.train --region D4 --model staeformer_quantile --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.train --region D4 --model remind --seed 0 --subset ../data_proc/regions/D4/subset_core.npy --backbone gwnet --save_extra
+-m wremind.train --region D4 --model wremind --seed 0 --subset ../data_proc/regions/D4/subset_core.npy --save_extra --final 1
+-m wremind.pool --region D4 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.pool --region D4 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.pool --region D4 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.stat_baselines --region D7 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.train --region D7 --model gwnet_gauss --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.train --region D7 --model gwnet_gauss+wx --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.train --region D7 --model staeformer_quantile --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.train --region D7 --model remind --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --backbone gwnet --save_extra

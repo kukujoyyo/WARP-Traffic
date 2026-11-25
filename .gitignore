@@ -1,0 +1,12 @@
+# REMIND reference implementation: clone it separately (see README, Requirements)
+remind_core/
+
+# local environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# queue run state
+experiments/*.stop
+experiments/*.pause
+experiments/*_hold.txt

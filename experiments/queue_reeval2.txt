@@ -1,0 +1,10 @@
+-m wremind.reeval --region D3 --run wremind_noCal_s0
+-m wremind.reeval --region D3 --run wremind_noH_s0
+-m wremind.reeval --region D3 --run wremind_noM2_s0
+-m wremind.reeval --region D3 --run wremind_noM3_s0
+-m wremind.reeval --region D3 --run wremind_noM4_s0
+-m wremind.reeval --region D3 --run wremind_orig_s0
+-m wremind.reeval --region D3 --run wremind_v2_s0
+-m wremind.reeval --region D3 --run wremind_v3_s0
+-m wremind.reeval --region D3 --run wremind_bbjoint_s0
+-m wremind.reeval --region D3 --run wremind_nllbb_s0

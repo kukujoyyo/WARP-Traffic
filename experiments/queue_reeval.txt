@@ -1,0 +1,100 @@
+# Re-evaluation with the revised evaluation code (causal inputs, observed targets, truncated sampling, full weather perturbation, coverage series). Inference only.
+# D3 main
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --save_extra
+-m wremind.pool --region D3 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1
+-m wremind.pool --region D3 --a wremind_s2 --b gwnet_gauss_s2 --name wremindpool --seed 2
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --save_extra
+-m wremind.reeval --region D3 --run gwnet_gauss_s1
+-m wremind.reeval --region D3 --run gwnet_gauss_s2
+-m wremind.reeval --region D3 --run wremind_s0 --save_extra
+-m wremind.reeval --region D3 --run wremind_s1
+-m wremind.reeval --region D3 --run wremind_s2
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --save_extra
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s1
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s2
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --save_extra
+-m wremind.pool --region D3 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0
+-m wremind.pool --region D3 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0
+-m wremind.pool --region D3 --a gwnet_gauss_s2 --b gwnet_gauss_s1 --name gwens --seed 1
+-m wremind.reeval --region D3 --run remind_s0 --save_extra
+-m wremind.reeval --region D3 --run remind_wx_s0 --save_extra
+-m wremind.reeval --region D3 --run remind_orig_s0 --save_extra
+-m wremind.reeval --region D3 --run staeformer_quantile_s0 --save_extra
+-m wremind.reeval --region D3 --run staeformer_s0 --save_extra
+-m wremind.reeval --region D3 --run gwnet_s0 --save_extra
+-m wremind.reeval --region D3 --run gwnet_quantile_s0 --save_extra
+-m wremind.reeval --region D3 --run wremind_wxret_s0 --save_extra
+-m wremind.stat_baselines --region D3 --reeval 2
+# D3 ablation and pool weights
+-m wremind.pool --region D3 --a wremind_wxret_s0 --b gwnet_gauss_s0 --name pool_wremind_wxret --seed 0
+-m wremind.pool --region D3 --a wremind_noCal_s0 --b gwnet_gauss_s0 --name pool_wremind_noCal --seed 0
+-m wremind.pool --region D3 --a wremind_noH_s0 --b gwnet_gauss_s0 --name pool_wremind_noH --seed 0
+-m wremind.pool --region D3 --a wremind_noM2_s0 --b gwnet_gauss_s0 --name pool_wremind_noM2 --seed 0
+-m wremind.pool --region D3 --a wremind_noM4_s0 --b gwnet_gauss_s0 --name pool_wremind_noM4 --seed 0
+-m wremind.pool --region D3 --a wremind_noM3_s0 --b gwnet_gauss_s0 --name pool_wremind_noM3 --seed 0 --truncate 0
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w3 --seed 0 --w 0.3
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w4 --seed 0 --w 0.4
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w6 --seed 0 --w 0.6
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w7 --seed 0 --w 0.7
+# D3 robustness
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --node_frac 0.6
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --node_frac 0.6
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --node_frac 0.6
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --node_frac 0.6
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --node_frac 0.8
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --node_frac 0.8
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --node_frac 0.8
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --node_frac 0.8
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_noise 0.5
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_noise 0.5
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --wx_noise 0.5
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --wx_noise 0.5
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_noise 1.0
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_noise 1.0
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --wx_noise 1.0
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --wx_noise 1.0
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_drop
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_drop
+-m wremind.reeval --region D3 --run gwnet_gauss_s0 --wx_drop
+-m wremind.reeval --region D3 --run gwnet_gauss+wx_s0 --wx_drop
+# D4 / D7
+-m wremind.pool --region D4 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.pool --region D4 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.pool --region D4 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.reeval --region D4 --run gwnet_gauss_s0 --save_extra
+-m wremind.reeval --region D4 --run wremind_s0
+-m wremind.reeval --region D4 --run remind_s0
+-m wremind.reeval --region D4 --run gwnet_gauss+wx_s0
+-m wremind.pool --region D4 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.pool --region D4 --a remind_s1 --b gwnet_gauss_s1 --name remindpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.pool --region D4 --a gwnet_gauss+wx_s1 --b gwnet_gauss_s1 --name gwwxpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.reeval --region D4 --run gwnet_gauss_s1 --save_extra
+-m wremind.reeval --region D4 --run wremind_s1
+-m wremind.reeval --region D4 --run remind_s1
+-m wremind.reeval --region D4 --run gwnet_gauss+wx_s1
+-m wremind.pool --region D4 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.reeval --region D4 --run staeformer_quantile_s0
+-m wremind.stat_baselines --region D4 --subset ../data_proc/regions/D4/subset_core.npy --reeval 2
+-m wremind.pool --region D7 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.pool --region D7 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.pool --region D7 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.reeval --region D7 --run gwnet_gauss_s0 --save_extra
+-m wremind.reeval --region D7 --run wremind_s0
+-m wremind.reeval --region D7 --run remind_s0
+-m wremind.reeval --region D7 --run gwnet_gauss+wx_s0
+-m wremind.pool --region D7 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.pool --region D7 --a remind_s1 --b gwnet_gauss_s1 --name remindpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.pool --region D7 --a gwnet_gauss+wx_s1 --b gwnet_gauss_s1 --name gwwxpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.reeval --region D7 --run gwnet_gauss_s1 --save_extra
+-m wremind.reeval --region D7 --run wremind_s1
+-m wremind.reeval --region D7 --run remind_s1
+-m wremind.reeval --region D7 --run gwnet_gauss+wx_s1
+-m wremind.pool --region D7 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.reeval --region D7 --run staeformer_quantile_s0
+-m wremind.stat_baselines --region D7 --subset ../data_proc/regions/D7/subset_core.npy --reeval 2
+# case study (figures 1, 9)
+-m analysis.case_study D3 gwnet_gauss_s0 remind_s0 wremind_s0 wremindpool_s0=wremind_s0+gwnet_gauss_s0
+# slow / optional
+-m wremind.reeval --region D3 --run deepar_s0 --save_extra
+-m wremind.train --region D3 --model wremind_noPi --seed 0 --final 1
+-m wremind.pool --region D3 --a wremind_noPi_s0 --b gwnet_gauss_s0 --name pool_wremind_noPi --seed 0

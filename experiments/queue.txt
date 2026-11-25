@@ -1,0 +1,101 @@
+-m wremind.stat_baselines --region D3
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --save_extra
+-m wremind.train --region D3 --model remind --seed 0 --save_extra
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra --backbone gwnet
+-m wremind.stat_baselines --region D3 --test_stride 6
+-m wremind.train --region D3 --model remind --seed 0 --save_extra --backbone gwnet
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --save_extra
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra --backbone gwnet --bb_init auto
+-m wremind.train --region D3 --model remind_wx --seed 0 --save_extra --backbone gwnet
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra --tag v2
+-m wremind.train --region D3 --model staeformer_quantile --seed 0 --save_extra
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra --tag v3
+-m wremind.train --region D3 --model deepar --seed 0 --save_extra
+-m wremind.train --region D3 --model wremind --seed 0 --save_extra --final 1
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --save_extra
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --save_extra
+-m wremind.pool --region D3 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w3 --seed 0 --w 0.3
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w4 --seed 0 --w 0.4
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w6 --seed 0 --w 0.6
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool_w7 --seed 0 --w 0.7
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --node_frac 0.8
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --node_frac 0.8
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --node_frac 0.8
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --node_frac 0.8
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --node_frac 0.6
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --node_frac 0.6
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --node_frac 0.6
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --node_frac 0.6
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_noise 0.5
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_noise 0.5
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --wx_noise 0.5
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --wx_noise 0.5
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_noise 1.0
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_noise 1.0
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --wx_noise 1.0
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --wx_noise 1.0
+-m wremind.pool --region D3 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --wx_drop
+-m wremind.pool --region D3 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --wx_drop
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --wx_drop
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --wx_drop
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --save_extra --reeval 1
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 0 --save_extra --reeval 1
+-m wremind.train --region D3 --model staeformer_quantile --seed 0 --save_extra --reeval 1
+-m wremind.train --region D3 --model deepar --seed 0 --save_extra --reeval 1
+-m wremind.train --region D3 --model remind --seed 0 --save_extra --backbone gwnet --reeval 1
+-m wremind.train --region D3 --model remind_wx --seed 0 --save_extra --backbone gwnet --reeval 1
+-m wremind.stat_baselines --region D3 --reeval 1
+-m wremind.train --region D3 --model gwnet_gauss --seed 1
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 1
+-m wremind.train --region D3 --model wremind --seed 1 --final 1
+-m wremind.pool --region D3 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1
+-m wremind.train --region D3 --model gwnet_gauss --seed 2
+-m wremind.train --region D3 --model gwnet_gauss+wx --seed 2
+-m wremind.train --region D3 --model wremind --seed 2 --final 1
+-m wremind.pool --region D3 --a wremind_s2 --b gwnet_gauss_s2 --name wremindpool --seed 2
+-m wremind.pool --region D3 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0
+-m wremind.pool --region D3 --a gwnet_gauss_s2 --b gwnet_gauss_s1 --name gwens --seed 1
+-m wremind.train --region D3 --model wremind --seed 0 --tod_window 0 --tag noCal --final 1
+-m wremind.pool --region D3 --a wremind_noCal_s0 --b gwnet_gauss_s0 --name pool_wremind_noCal --seed 0
+-m wremind.train --region D3 --model wremind --seed 0 --alpha 0.6 --tag wxret --final 1
+-m wremind.pool --region D3 --a wremind_wxret_s0 --b gwnet_gauss_s0 --name pool_wremind_wxret --seed 0
+-m wremind.train --region D3 --model wremind --seed 0 --hgate 0 --tag noH --final 1
+-m wremind.pool --region D3 --a wremind_noH_s0 --b gwnet_gauss_s0 --name pool_wremind_noH --seed 0
+-m wremind.train --region D3 --model wremind_noM2 --seed 0 --loss crps --final 1
+-m wremind.pool --region D3 --a wremind_noM2_s0 --b gwnet_gauss_s0 --name pool_wremind_noM2 --seed 0
+-m wremind.train --region D3 --model wremind_noM3 --seed 0 --final 1
+-m wremind.pool --region D3 --a wremind_noM3_s0 --b gwnet_gauss_s0 --name pool_wremind_noM3 --seed 0 --truncate 0
+-m wremind.train --region D3 --model wremind_noM4 --seed 0 --final 1
+-m wremind.pool --region D3 --a wremind_noM4_s0 --b gwnet_gauss_s0 --name pool_wremind_noM4 --seed 0
+# moved from queue_b.txt (serial run is faster than two workers)
+-m wremind.train --region D7 --model remind --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --backbone gwnet --save_extra
+-m wremind.train --region D7 --model wremind --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --save_extra --final 1
+-m wremind.pool --region D7 --a wremind_s0 --b gwnet_gauss_s0 --name wremindpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.pool --region D7 --a remind_s0 --b gwnet_gauss_s0 --name remindpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.pool --region D7 --a gwnet_gauss+wx_s0 --b gwnet_gauss_s0 --name gwwxpool --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.train --region D3 --model gwnet --seed 0 --save_extra
+-m wremind.train --region D3 --model staeformer --seed 0 --save_extra
+-m wremind.train --region D3 --model gwnet_quantile --seed 0
+# --- teacher feedback item 6: convergence check with 3x training budget (D3, seed 0) ---
+-m wremind.train --region D3 --model gwnet_gauss --seed 0 --tag long --epochs 60 --patience 8
+-m wremind.train --region D3 --model staeformer_quantile --seed 0 --tag long --epochs 60 --patience 8
+# --- teacher feedback item 5: D7 seed 1 ---
+-m wremind.train --region D7 --model gwnet_gauss --seed 1 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.train --region D7 --model gwnet_gauss+wx --seed 1 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.train --region D7 --model remind --seed 1 --subset ../data_proc/regions/D7/subset_core.npy --backbone gwnet --save_extra
+-m wremind.train --region D7 --model wremind --seed 1 --subset ../data_proc/regions/D7/subset_core.npy --save_extra --final 1
+-m wremind.pool --region D7 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy --save_extra
+-m wremind.pool --region D7 --a remind_s1 --b gwnet_gauss_s1 --name remindpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.pool --region D7 --a gwnet_gauss+wx_s1 --b gwnet_gauss_s1 --name gwwxpool --seed 1 --subset ../data_proc/regions/D7/subset_core.npy
+-m wremind.pool --region D7 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0 --subset ../data_proc/regions/D7/subset_core.npy
+# --- teacher feedback item 5: D4 seed 1 ---
+-m wremind.train --region D4 --model gwnet_gauss --seed 1 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.train --region D4 --model gwnet_gauss+wx --seed 1 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.train --region D4 --model remind --seed 1 --subset ../data_proc/regions/D4/subset_core.npy --backbone gwnet --save_extra
+-m wremind.train --region D4 --model wremind --seed 1 --subset ../data_proc/regions/D4/subset_core.npy --save_extra --final 1
+-m wremind.pool --region D4 --a wremind_s1 --b gwnet_gauss_s1 --name wremindpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy --save_extra
+-m wremind.pool --region D4 --a remind_s1 --b gwnet_gauss_s1 --name remindpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.pool --region D4 --a gwnet_gauss+wx_s1 --b gwnet_gauss_s1 --name gwwxpool --seed 1 --subset ../data_proc/regions/D4/subset_core.npy
+-m wremind.pool --region D4 --a gwnet_gauss_s1 --b gwnet_gauss_s0 --name gwens --seed 0 --subset ../data_proc/regions/D4/subset_core.npy
